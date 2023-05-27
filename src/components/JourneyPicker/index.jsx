@@ -9,13 +9,13 @@ export const JourneyPicker = ({ onJourneyChange }) => {
   const [dates, setDates] = useState([]);
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(fromCity, toCity, date);
     fetch(
       `https://apps.kodim.cz/daweb/leviexpress/api/journey?fromCity=${fromCity}&toCity=${toCity}&date=${date}`,
     )
       .then((response) => response.json())
       .then((data) => {
         onJourneyChange(data.results);
+        // console.log(data.results);
       });
   };
   useEffect(() => {
