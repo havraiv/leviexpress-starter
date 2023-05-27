@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { JourneyPicker } from '../JourneyPicker';
 import { JourneyDetail } from '../JourneyDetail';
 import { SelectedSeat } from '../SelectedSeat';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export const Home = () => {
   const navigate = useNavigate();
