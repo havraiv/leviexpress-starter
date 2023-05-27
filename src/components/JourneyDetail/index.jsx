@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.css';
 import { BusStop } from '../BusStop';
+import { SelectedSeat } from '../SelectedSeat';
 
 export const JourneyDetail = ({ journey }) => {
   const stops = journey.stops;
@@ -20,8 +21,7 @@ export const JourneyDetail = ({ journey }) => {
                 />
               );
             })}
-
-            <BusStop name="Praha" station="ÚAN Florenc" time="15:55" />
+            <SelectedSeat number={journey.autoSeat} />
           </div>
         </div>
       </div>
