@@ -15,7 +15,6 @@ export const JourneyPicker = ({ onJourneyChange }) => {
       .then((response) => response.json())
       .then((data) => {
         onJourneyChange(data.results);
-        // console.log(data.results);
       });
   };
   useEffect(() => {
