@@ -4,7 +4,7 @@ import './style.css';
 export const JourneyPicker = ({ onJourneyChange }) => {
   const [fromCity, setFromCity] = useState('');
   const [toCity, setToCity] = useState('');
-  const [date, setDate] = useState('');
+  const [date, setDate] = useState([]);
   const [cities, setCities] = useState([]);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,6 +14,11 @@ export const JourneyPicker = ({ onJourneyChange }) => {
       .then((response) => response.json())
       .then((cities) => {
         setCities(cities.results);
+      });
+    fetch('https://apps.kodim.cz/daweb/leviexpress/api/dates')
+      .then((response) => response.json())
+      .then((dates) => {
+        setDate(dates.results);
       });
   }, []);
 
@@ -49,7 +54,7 @@ export const JourneyPicker = ({ onJourneyChange }) => {
                 setDate(e.target.value);
               }}
             >
-              <DatesOptions />
+              <DatesOptions dates={date} />
             </select>
           </label>
           <div className="journey-picker__controls">
@@ -78,16 +83,18 @@ const CityOptions = ({ cities }) => {
     </>
   );
 };
-// Podobně jako CityOptions získává seznam měst v property cities, bude i DatesOptions získávat seznam termínů v property dates. V elementech <option> (s výjimkou prvního ručně vloženého s textem „Vyberte“) požijte jako value a key hodnotu dateBasic a jako hodnotu dateCs použíjte jako obsah.
-const DatesOptions = () => {
+
+const DatesOptions = ({ dates }) => {
   return (
     <>
       <option value="">Vyberte</option>
-      <option value="datum01">Datum 01</option>
-      <option value="datum02">Datum 02</option>
-      <option value="datum03">Datum 03</option>
-      <option value="datum04">Datum 04</option>
-      <option value="datum05">Datum 05</option>
+      {dates.map((date) => {
+        return (
+          <option key={date.dateBasic} value={date.dateBasic}>
+            {date.dateCs}
+          </option>
+        );
+      })}
     </>
   );
 };
