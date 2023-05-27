@@ -5,14 +5,17 @@ export const JourneyPicker = ({ onJourneyChange }) => {
   const [fromCity, setFromCity] = useState('');
   const [toCity, setToCity] = useState('');
   const [date, setDate] = useState('');
-  const [cities, setCities] = useState([
-    { name: 'Praha', code: 'CZ-PRG' },
-    { name: 'Brno', code: 'CZ-BRQ' },
-  ]);
+  const [cities, setCities] = useState([]);
   const handleSubmit = (e) => {
     e.preventDefault();
   };
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setCities([
+      { name: 'Praha', code: 'CZ-PRG' },
+      { name: 'Brno', code: 'CZ-BRQ' },
+    ]);
+    console.log('lalala');
+  }, []);
 
   return (
     <div className="journey-picker container">
