@@ -7,9 +7,7 @@ export const JourneyPicker = ({ onJourneyChange }) => {
   const [date, setDate] = useState('');
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(
-      `Město odkud je: ${fromCity}, město kam je ${toCity} a datum je: ${date}`,
-    );
+    console.log(fromCity, toCity, date);
   };
   return (
     <div className="journey-picker container">
@@ -20,9 +18,7 @@ export const JourneyPicker = ({ onJourneyChange }) => {
             <div className="journey-picker__label">Odkud:</div>
             <select
               onChange={(e) => {
-                const cityValue = e.target.value;
-                setFromCity(cityValue);
-                console.log(cityValue);
+                setFromCity(e.target.value);
               }}
             >
               <option value="">Vyberte</option>
@@ -37,9 +33,7 @@ export const JourneyPicker = ({ onJourneyChange }) => {
             <div className="journey-picker__label">Kam:</div>
             <select
               onChange={(e) => {
-                const cityValue = e.target.value;
-                setToCity(cityValue);
-                console.log(cityValue);
+                setToCity(e.target.value);
               }}
             >
               <option value="">Vyberte</option>
@@ -54,9 +48,7 @@ export const JourneyPicker = ({ onJourneyChange }) => {
             <div className="journey-picker__label">Datum:</div>
             <select
               onChange={(e) => {
-                const dateValue = e.target.value;
-                setDate(dateValue);
-                console.log(dateValue);
+                setDate(e.target.value);
               }}
             >
               <option value="">Vyberte</option>
