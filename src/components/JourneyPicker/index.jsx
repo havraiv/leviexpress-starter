@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './style.css';
-// Do hlavní komponenty JourneyPicker přidejte useEffect, který se bude volat při prvním zobrazení komponenty. Přesuňte do něj nastavení stavu cities – naše dvě testovací města. Výchozí stav pro cities tedy bude prázdné pole, teprve useEffect nastaví seznam měst na Prahu a Brno. Ověřte v prohlížeči, že se v selectech stále zobrazují obě města. Dejte pozor na to, aby se efekt volal opravdu jen při prvním zobrazení komponenty – můžete si to ověřit pomocným výpisem do konzole prohlížeče, který se musí objevit jen jednou – když budete překlikávat na jiná města, výpis už se nebude opakovat.
+// Upravte useEffect tak, že bude seznam měst získávat z API. Endpoint je na adrese
+
+// https://apps.kodim.cz/daweb/leviexpress/api/cities
+
+// a vrací seznam měst jako JSON ve formátu, který jsme použili výše. Získaná data použijte místo Prahy a Brna ve stavu cities. Ověřte v prohlížeči, že se v seznamu měst objeví i další města.
 export const JourneyPicker = ({ onJourneyChange }) => {
   const [fromCity, setFromCity] = useState('');
   const [toCity, setToCity] = useState('');
@@ -10,11 +14,11 @@ export const JourneyPicker = ({ onJourneyChange }) => {
     e.preventDefault();
   };
   useEffect(() => {
-    setCities([
-      { name: 'Praha', code: 'CZ-PRG' },
-      { name: 'Brno', code: 'CZ-BRQ' },
-    ]);
-    console.log('lalala');
+    fetch('https://apps.kodim.cz/daweb/leviexpress/api/cities')
+      .then((response) => response.json())
+      .then((cities) => {
+        setCities(cities.results);
+      });
   }, []);
 
   return (
