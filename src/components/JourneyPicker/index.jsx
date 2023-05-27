@@ -4,8 +4,9 @@ import './style.css';
 export const JourneyPicker = ({ onJourneyChange }) => {
   const [fromCity, setFromCity] = useState('');
   const [toCity, setToCity] = useState('');
-  const [date, setDate] = useState([]);
+  const [date, setDate] = useState('');
   const [cities, setCities] = useState([]);
+  const [dates, setDates] = useState([]);
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -18,7 +19,7 @@ export const JourneyPicker = ({ onJourneyChange }) => {
     fetch('https://apps.kodim.cz/daweb/leviexpress/api/dates')
       .then((response) => response.json())
       .then((dates) => {
-        setDate(dates.results);
+        setDates(dates.results);
       });
   }, []);
 
@@ -54,7 +55,7 @@ export const JourneyPicker = ({ onJourneyChange }) => {
                 setDate(e.target.value);
               }}
             >
-              <DatesOptions dates={date} />
+              <DatesOptions dates={dates} />
             </select>
           </label>
           <div className="journey-picker__controls">
