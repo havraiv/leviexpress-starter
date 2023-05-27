@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './style.css';
-// Upravte useEffect tak, že bude seznam měst získávat z API. Endpoint je na adrese
 
-// https://apps.kodim.cz/daweb/leviexpress/api/cities
-
-// a vrací seznam měst jako JSON ve formátu, který jsme použili výše. Získaná data použijte místo Prahy a Brna ve stavu cities. Ověřte v prohlížeči, že se v seznamu měst objeví i další města.
 export const JourneyPicker = ({ onJourneyChange }) => {
   const [fromCity, setFromCity] = useState('');
   const [toCity, setToCity] = useState('');
@@ -53,12 +49,7 @@ export const JourneyPicker = ({ onJourneyChange }) => {
                 setDate(e.target.value);
               }}
             >
-              <option value="">Vyberte</option>
-              <option value="datum01">Datum 01</option>
-              <option value="datum02">Datum 02</option>
-              <option value="datum03">Datum 03</option>
-              <option value="datum04">Datum 04</option>
-              <option value="datum05">Datum 05</option>
+              <DatesOptions />
             </select>
           </label>
           <div className="journey-picker__controls">
@@ -84,6 +75,19 @@ const CityOptions = ({ cities }) => {
           </option>
         );
       })}
+    </>
+  );
+};
+// Podobně jako CityOptions získává seznam měst v property cities, bude i DatesOptions získávat seznam termínů v property dates. V elementech <option> (s výjimkou prvního ručně vloženého s textem „Vyberte“) požijte jako value a key hodnotu dateBasic a jako hodnotu dateCs použíjte jako obsah.
+const DatesOptions = () => {
+  return (
+    <>
+      <option value="">Vyberte</option>
+      <option value="datum01">Datum 01</option>
+      <option value="datum02">Datum 02</option>
+      <option value="datum03">Datum 03</option>
+      <option value="datum04">Datum 04</option>
+      <option value="datum05">Datum 05</option>
     </>
   );
 };
