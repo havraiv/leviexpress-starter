@@ -21,6 +21,7 @@ export const Home = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        navigate(`/reservation/${data.results.reservationId}`);
       });
   };
   const [journey, setJourney] = useState(null);
