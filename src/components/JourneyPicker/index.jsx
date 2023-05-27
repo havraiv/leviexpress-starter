@@ -15,6 +15,13 @@ export const JourneyPicker = ({ onJourneyChange }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(fromCity, toCity, date);
+    fetch(
+      `https://apps.kodim.cz/daweb/leviexpress/api/journey?fromCity=${fromCity}&toCity=${toCity}&date=${date}`,
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.results);
+      });
   };
   useEffect(() => {
     fetch('https://apps.kodim.cz/daweb/leviexpress/api/cities')
@@ -88,7 +95,7 @@ const CityOptions = ({ cities }) => {
       <option value="">Vyberte</option>
       {cities.map((city) => {
         return (
-          <option key={city.code} value={city.name}>
+          <option key={city.code} value={city.code}>
             {city.name}
           </option>
         );
