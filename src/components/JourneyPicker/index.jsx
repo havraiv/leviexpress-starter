@@ -7,8 +7,14 @@ export const JourneyPicker = ({ onJourneyChange }) => {
   const [date, setDate] = useState('');
   const [cities, setCities] = useState([]);
   const [dates, setDates] = useState([]);
+  // Nyní výpis do konzole nahradíte voláním API. Bude se volat následující API endpoint
+
+  // https://apps.kodim.cz/daweb/leviexpress/api/journey?fromCity=…&toCity=…&date=…
+
+  // Vytečkovaná místa se nahradí hodnotami vybranými uživatelem, které jsou uložené ve stavech fromCity, toCity a date.
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(fromCity, toCity, date);
   };
   useEffect(() => {
     fetch('https://apps.kodim.cz/daweb/leviexpress/api/cities')
@@ -59,7 +65,13 @@ export const JourneyPicker = ({ onJourneyChange }) => {
             </select>
           </label>
           <div className="journey-picker__controls">
-            <button className="btn" type="submit">
+            <button
+              className="btn"
+              type="submit"
+              disabled={
+                fromCity === '' || toCity === '' || date === '' ? true : false
+              }
+            >
               Vyhledat spoj
             </button>
           </div>
