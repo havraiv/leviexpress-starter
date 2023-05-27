@@ -3,7 +3,7 @@ import { JourneyPicker } from '../JourneyPicker';
 
 export const Home = () => {
   const handleJourneyChange = ({ journey }) => {
-    console.log({ journey });
+    console.log(journey);
   };
   return (
     <main>
